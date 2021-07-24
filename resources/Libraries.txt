@@ -1,2 +1,16 @@
 For styling, React Bootstrap https://react-bootstrap.github.io/
 
+react-router-dom: react router so that we can actually have different routes,
+different URLs that we can go to in our project in our front end.
+React renders the appropriate information on the DOM using its component structure. 
+Client-side routing in React helps to maintain the seamless user experience that a 
+typical single-page application promises. This is achieved through an external React library 
+called React Router.
+https://reactrouter.com/web/guides/quick-start
+
+
+Difference in a tag and Link:
+https://stackoverflow.com/questions/43087007/react-link-vs-a-tag-and-arrow-function The href attribute 
+would trigger a page refresh which would reset the application states. However the link and navlink of 
+react-router doesn't trigger a page refresh. Since React is used to create single page applications most 
+of the time make sure you choose Link or Navlink when working with routing
