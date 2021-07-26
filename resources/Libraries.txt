@@ -14,3 +14,47 @@ https://stackoverflow.com/questions/43087007/react-link-vs-a-tag-and-arrow-funct
 would trigger a page refresh which would reset the application states. However the link and navlink of 
 react-router doesn't trigger a page refresh. Since React is used to create single page applications most 
 of the time make sure you choose Link or Navlink when working with routing
+
+We need to installAxio, it is an HTTP library. We use it to make requests to our back end, 
+although you could use the fetch API if you like,
+
+Add Prxy in Frontend:
+So if I go to our front end now, we're not seeing any products and we're seeing this in the in the
+console, this 404 error not found. And the reason for that is what it's looking at is localhost 3000 API products because we didn't define
+anything in here, like localhost 5000. And if we did do that, we would get a cause error across across domain error.
+So what we want to do is add a proxy that will, instead of looking at localhost 3000, it'll look at
+localhost 5000 and we can add a proxy by going into the front end packaged Json, which is right here,
+make sure it's the front end, has this Riak stuff. And let's go ahead and add right under name will say proxy.
+And let's do HTP and then one two seven zero zero one, which is your Lookback address, that's your
+local host and you want Port 5000. Now, once you add a proxy, you just want to restart your front end server.
+And now if we go back here once this loads, it should work.
+
+Nodemon:
+It is a tool that we can use to constantly watch our server so that we don't have to keep
+resetting. If we don't use anything, then every time we make a change to, you know, server G.S., we have
+to keep restarting the server.
+
+Concurrently: We can use it to run both frontend and backend at the same time.
+
+dotenv: Package for setting up Environment Variables
+
+Add "type": "module" in package.json to use import instead of require() in Backend server. Node version>=14
+
+
+Mongoose: https://mongoosejs.com/docs/
+So now we're going to be connecting to our database through our application and we're going to use a
+tool called Mongoose, which is object modeling for nodejs. And basically, it allows us to create a 
+model and a schema for different resources in our database,like products and users and so on.
+
+Bcrypt: https://www.npmjs.com/package/bcryptjs
+bcrypt is a password-hashing function. Besides incorporating a salt to protect against rainbow
+table attacks, bcrypt is an adaptive function: over time, the iteration count can be increased to make
+it slower, so it remains resistant to brute-force search attacks even with increasing computation power. 
+
+
+express-async-handler: https://www.npmjs.com/package/express-async-handler
+Simple middleware for handling exceptions inside of async express routes
+and passing them to your express error handlers.
+
+Middleware: a function that has access to the requests response cycle.
+So when we make a request, we can have a function that can access anything in these objects.
