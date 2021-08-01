@@ -58,3 +58,6 @@ and passing them to your express error handlers.
 
 Middleware: a function that has access to the requests response cycle.
 So when we make a request, we can have a function that can access anything in these objects.
+
+useDispatch: To dispatch or call in action
+useSelector: which is used to select parts of the state.
