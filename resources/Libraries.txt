@@ -61,3 +61,7 @@ So when we make a request, we can have a function that can access anything in th
 
 useDispatch: To dispatch or call in action
 useSelector: which is used to select parts of the state.
+
+
+Authentication: We authenticate user and get a token
+We add bodyParser Middleware to access req.body

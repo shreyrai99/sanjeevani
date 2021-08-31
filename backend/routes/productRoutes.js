@@ -1,13 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("../models/productModel");
-const asyncHandler = require("express-async-handler");
+
+const {
+  getProducts,
+  getProductById
+} = require("../controllers/productController");
 
 /*
 @desc:  FETCH ALL PRODUCTS
 @route: GET /api/products
 @access Public
 */
+router.route("/").get(getProducts);
+
+/*
+@desc:  Fetch single product
+@route: GET /api/products/:id
+@access Public
+*/
+router.route("/:id").get(getProductById);
+
+module.exports = router;
+
+/*
+ORIGINAL CODE
+
+
+@desc:  Fetch single product
+@route: GET /api/products/:id
+@access Public
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -16,11 +37,10 @@ router.get(
   })
 );
 
-/*
 @desc:  Fetch single product
 @route: GET /api/products/:id
 @access Public
-*/
+
 router.get(
   "/:id",
   asyncHandler(async (req, res) => {
@@ -33,5 +53,4 @@ router.get(
     }
   })
 );
-
-module.exports = router;
+*/
