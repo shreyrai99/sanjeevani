@@ -33,4 +33,16 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+userSchema.pre("save", async function(next) {
+  //encrypt password from text into hashed before saving while registering user
+  //generate new hash only at time of registry or modification of password
+  // dont want to re-hash if we update name or email as then password is rehashed and we wont be login
+  if (!this.isModified("password")) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
 module.exports = User = mongoose.model("User", userSchema);
