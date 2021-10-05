@@ -69,3 +69,5 @@ We add bodyParser Middleware to access req.body
 JSON Web Tokens: We use them for Authorization purpose. We create it using jsonwebtoken.
 https://www.npmjs.com/package/jsonwebtoken
 Authorization vs Authentication: https://auth0.com/docs/get-started/authentication-and-authorization
+
+Read History and Location in React
