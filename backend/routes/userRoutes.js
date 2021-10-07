@@ -4,12 +4,16 @@ const protect = require("../middleware/authMiddleware");
 const {
   authUser,
   getUserProfile,
-  registerUser
+  registerUser,
+  updateUserProfile
 } = require("../controllers/userController");
 
 router.post("/login", authUser); //authenticate user
 
-router.route("/profile").get(protect, getUserProfile); //protect middleware runs whenever we hit this route
+router
+  .route("/profile")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile); //protect middleware runs whenever we hit this route
 
 router.route("/").post(registerUser); //register user
 
