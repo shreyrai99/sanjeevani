@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const notFound = require("./middleware/errorMiddleware").notFound;
 const errorHandler = require("./middleware/errorMiddleware").errorHandler;
 
@@ -24,6 +25,7 @@ connectDB();
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 //middleware for "Custom Erro handling"
 app.use(notFound);
