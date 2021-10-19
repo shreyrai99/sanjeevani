@@ -71,3 +71,5 @@ https://www.npmjs.com/package/jsonwebtoken
 Authorization vs Authentication: https://auth0.com/docs/get-started/authentication-and-authorization
 
 Read History and Location in React
+
+Mongoose Populate(): populate() function in mongoose is used for populating the data inside the reference
