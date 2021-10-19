@@ -5,8 +5,16 @@ const protect = require("../middleware/authMiddleware");
 const {
   addOrderItems,
   getOrderById,
-  updateOrderToPaid
+  updateOrderToPaid,
+  getMyOrders
 } = require("../controllers/orderController");
+
+/*
+@desc:  Get logged in user's orders
+@route: GET /api/orders/myorders
+@access Private
+*/
+router.route("/myorders").get(protect, getMyOrders);
 
 /*
 @desc:  Create new order
