@@ -6,7 +6,10 @@ const {
   getUserProfile,
   registerUser,
   updateUserProfile,
-  getUsers
+  getUsers,
+  deleteUser,
+  updateUser,
+  getUserById
 } = require("../controllers/userController");
 
 router.post("/login", authUser); //authenticate user
@@ -18,5 +21,9 @@ router
 
 router.route("/").post(registerUser); //register user
 router.route("/").get(protect, admin, getUsers); //Get all users, admin only
-
+router
+  .route("/:id")
+  .delete(protect, admin, deleteUser) //Delet user, admin only
+  .get(protect, admin, getUserById) //Get user, admin only
+  .put(protect, admin, updateUser); //Update user, admin only
 module.exports = router;
