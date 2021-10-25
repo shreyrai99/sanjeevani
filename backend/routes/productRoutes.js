@@ -1,24 +1,25 @@
 const express = require("express");
 const router = express.Router();
+const { protect, admin } = require("../middleware/authMiddleware");
 
 const {
   getProducts,
-  getProductById
+  getProductById,
+  deleteProduct,
+  createProduct,
+  updateProduct
 } = require("../controllers/productController");
 
-/*
-@desc:  FETCH ALL PRODUCTS
-@route: GET /api/products
-@access Public
-*/
-router.route("/").get(getProducts);
+router
+  .route("/")
+  .get(getProducts)
+  .post(protect, admin, createProduct);
 
-/*
-@desc:  Fetch single product
-@route: GET /api/products/:id
-@access Public
-*/
-router.route("/:id").get(getProductById);
+router
+  .route("/:id")
+  .get(getProductById)
+  .delete(protect, admin, deleteProduct)
+  .put(protect, admin, updateProduct);
 
 module.exports = router;
 
