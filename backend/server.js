@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const path = require("path");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const notFound = require("./middleware/errorMiddleware").notFound;
 const errorHandler = require("./middleware/errorMiddleware").errorHandler;
+const uploadRoutes = require("./routes/uploadRoutes");
 
 app.use(express.json()); //allow us to accept JSON data in body
 // import express from "express";
@@ -26,11 +27,15 @@ connectDB();
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
 
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
 //hit this route and fetch the client id of PayPal
+
+//we need to make "uploads" folder static to make it accessible
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //middleware for "Custom Erro handling"
 app.use(notFound);

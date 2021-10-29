@@ -73,3 +73,6 @@ Authorization vs Authentication: https://auth0.com/docs/get-started/authenticati
 Read History and Location in React
 
 Mongoose Populate(): populate() function in mongoose is used for populating the data inside the reference
+
+multer: library for uploading images.
+https://www.npmjs.com/package/multer
