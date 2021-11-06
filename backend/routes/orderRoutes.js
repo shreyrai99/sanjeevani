@@ -6,7 +6,9 @@ const {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
-  getMyOrders
+  updateOrderToDelivered,
+  getMyOrders,
+  getOrders
 } = require("../controllers/orderController");
 
 /*
@@ -21,7 +23,10 @@ router.route("/myorders").get(protect, getMyOrders);
 @route: POST /api/orders
 @access Private
 */
-router.route("/").post(protect, addOrderItems);
+router
+  .route("/")
+  .post(protect, addOrderItems)
+  .get(protect, admin, getOrders);
 
 /*
 @desc:  Get order by ID
@@ -36,5 +41,12 @@ router.route("/:id").get(protect, getOrderById);
 @access Private
 */
 router.route("/:id/pay").put(protect, updateOrderToPaid);
+
+/*
+@desc:  Update order to Delivered
+@route: PUT /api/orders/:id/deliver
+@access Private/Admin
+*/
+router.route("/:id/deliver").put(protect, admin, updateOrderToDelivered);
 
 module.exports = router;
