@@ -76,3 +76,6 @@ Mongoose Populate(): populate() function in mongoose is used for populating the 
 
 multer: library for uploading images.
 https://www.npmjs.com/package/multer
+
+req.query is used to fetch things after question mark
+for example ?keyword=xyz then req.query.keyword
