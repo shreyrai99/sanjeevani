@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express();
+const morgan = require("morgan");
 const path = require("path");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
@@ -10,15 +10,21 @@ const notFound = require("./middleware/errorMiddleware").notFound;
 const errorHandler = require("./middleware/errorMiddleware").errorHandler;
 const uploadRoutes = require("./routes/uploadRoutes");
 
+dotenv.config();
+
+connectDB();
+
+const app = express();
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 app.use(express.json()); //allow us to accept JSON data in body
 // import express from "express";
 // const app = express();
 // import dotenv from "dotenv";
 // import products from "./data/products.js";
-
-dotenv.config();
-
-connectDB();
 
 // app.get("/", (req, res) => {
 //   res.send("API running...");
