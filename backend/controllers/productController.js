@@ -111,7 +111,10 @@ const updateProduct = asyncHandler(async (req, res) => {
 */
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
-
+  if (!rating || !comment.length) {
+    res.status(400);
+    throw new Error("Empty field!");
+  }
   const product = await Product.findById(req.params.id);
   if (product) {
     const alreadyReviewed = product.reviews.find(
