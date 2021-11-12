@@ -6,6 +6,7 @@ import { listProducts } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Paginate from "../components/Paginate";
+import ProductCarousel from "../components/ProductCarousel";
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword; // we set keyword in App.js
@@ -33,6 +34,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+      {!keyword && <ProductCarousel />}
       <h1>Trending Hot Deals!</h1>
       {loading ? (
         <Loader />

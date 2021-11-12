@@ -8,13 +8,16 @@ const {
   deleteProduct,
   createProduct,
   updateProduct,
-  createProductReview
+  createProductReview,
+  getTopProducts
 } = require("../controllers/productController");
 
 router
   .route("/")
   .get(getProducts)
   .post(protect, admin, createProduct);
+
+router.get("/top", getTopProducts);
 
 router.route("/:id/reviews").post(protect, createProductReview);
 
