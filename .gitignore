@@ -26,7 +26,3 @@ yarn-error.log*
 .vscode/settings.json
 
 backend/data
-
-uploads/*.jpg
-uploads/*.jpeg
-uploads/*.png
