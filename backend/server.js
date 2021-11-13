@@ -41,7 +41,10 @@ app.get("/api/config/paypal", (req, res) => {
 //hit this route and fetch the client id of PayPal
 
 //we need to make "uploads" folder static to make it accessible
+// images are in /uploads folder in backend. by this code you have it in frontend:
+__dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+console.log(path.join(__dirname, "uploads"));
 
 //middleware for "Custom Erro handling"
 app.use(notFound);

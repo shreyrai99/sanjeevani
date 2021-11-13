@@ -79,3 +79,6 @@ https://www.npmjs.com/package/multer
 
 req.query is used to fetch things after question mark
 for example ?keyword=xyz then req.query.keyword
+
+React-helmet: add custom page titles
+https://www.npmjs.com/package/react-helmet

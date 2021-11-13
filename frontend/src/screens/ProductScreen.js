@@ -18,6 +18,8 @@ import {
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import { PRODUCT_DETAILS_RESET } from "../constants/productConstants";
+import Meta from "../components/Meta";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -47,6 +49,7 @@ const ProductScreen = ({ history, match }) => {
       setComment("");
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
+    dispatch({ type: PRODUCT_DETAILS_RESET });
     dispatch(listProductDetails(match.params.id));
     dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
   }, [dispatch, match, successProductReview]);
@@ -86,9 +89,15 @@ const ProductScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image
+                src={product.image}
+                alt={product.name}
+                onError={event => (event.target.src = "/images/sample.jpg")}
+                fluid
+              />
               {/*fluid keeps image inside container*/}
             </Col>
             <Col md={3}>

@@ -1,12 +1,17 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
+
 const product = props => {
   return (
     <>
       <Card className="my-3 p-3 rounded">
         <Link to={`/product/${props.product._id}`}>
-          <Card.Img src={props.product.image} variant="top" />
+          <Card.Img
+            src={props.product.image}
+            variant="top"
+            onError={event => (event.target.src = "/images/sample.jpg")}
+          />
         </Link>
 
         <Card.Body>

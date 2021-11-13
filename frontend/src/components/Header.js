@@ -18,8 +18,7 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <i className="fas fa-check-circle"></i>
-              Vyapar
+              <i className="fas fa-heartbeat"></i> Sanjeevani
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
