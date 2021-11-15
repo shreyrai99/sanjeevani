@@ -119,11 +119,67 @@ const unlikePost = asyncHandler(async (req, res) => {
   await post.save();
   return res.json(post);
 });
+
+/*
+@desc:  Comment on Post
+@route: POST /api/posts/:id/comment
+@access Private
+*/
+const commentOnPost = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  const user = await User.findById(req.user.id);
+  const { text, title, link, image } = req.body;
+
+  if (!text || !title) {
+    res.status(400);
+    throw new Error("Title and text should not be empty!");
+  }
+  const commentCreate = {
+    text,
+    title,
+    link,
+    image,
+    user: req.user._id,
+    name: user.name
+  };
+  post.comments.unshift(commentCreate);
+  await post.save();
+  res.status(201).json(post);
+});
+
+/*
+@desc:  Delete a  Comment
+@route: DELETE /api/posts/:id/comment/:comment_id
+@access Private/Admin
+*/
+const deleteComment = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.id);
+
+  if (!post) {
+    res.status(404);
+    throw new Error("Post not found!");
+  }
+  const comment = post.comments.find(com => com.id === req.params.comment_id);
+  if (!comment) {
+    res.status(404);
+    throw new Error("Comment doesnot exists!");
+  }
+  if (comment.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("Not authorized to delete comment");
+  }
+
+  post.comments = post.comments.filter(com => com.id !== req.params.comment_id);
+  await post.save();
+  res.json({ message: "Comment deleted successfiully" });
+});
 module.exports = {
   createPost,
   deletePost,
   getPosts,
   getPostById,
   likePost,
-  unlikePost
+  unlikePost,
+  commentOnPost,
+  deleteComment
 };

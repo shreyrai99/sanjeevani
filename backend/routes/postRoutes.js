@@ -7,7 +7,9 @@ const {
   getPosts,
   getPostById,
   likePost,
-  unlikePost
+  unlikePost,
+  deleteComment,
+  commentOnPost
 } = require("../controllers/postController");
 
 router
@@ -17,6 +19,9 @@ router
 
 router.route("/:id/like").post(protect, likePost);
 router.route("/:id/unlike").post(protect, unlikePost);
+
+router.route("/:id/comment").post(protect, commentOnPost);
+router.route("/:id/comment/:comment_id").delete(protect, deleteComment);
 
 router
   .route("/:id")

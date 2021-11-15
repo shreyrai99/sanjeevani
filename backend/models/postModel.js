@@ -47,6 +47,12 @@ const postSchema = mongoose.Schema(
         date: {
           type: Date,
           default: Date.now
+        },
+        link: {
+          type: String
+        },
+        image: {
+          type: String
         }
       }
     ],
