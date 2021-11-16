@@ -23,19 +23,28 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Route render={({ history }) => <SearchBox history={history} />} />
+            {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
             <Nav className="ms-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <i className="fas fa-shopping-cart"></i>Cart
                 </Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/posts">
+                <Nav.Link>
+                  <i className="fas fa-rss-square"></i>
+                  Newsfeed
+                </Nav.Link>
+              </LinkContainer>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <i className="far fa-user-circle"></i>Profile
+                    </NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
+                    <i className="fas fa-sign-out-alt"></i>
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -61,6 +70,13 @@ const Header = () => {
               )}
             </Nav>
           </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+        <Container>
+          <Navbar.Brand>
+            <Route render={({ history }) => <SearchBox history={history} />} />
+          </Navbar.Brand>
         </Container>
       </Navbar>
     </header>

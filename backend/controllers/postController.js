@@ -8,7 +8,7 @@ const asyncHandler = require("express-async-handler");
 @access Private
 */
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).sort({ createdAt: -1 });
   res.json(posts);
 });
 

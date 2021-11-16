@@ -18,6 +18,7 @@ import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
+import PostScreen from "./screens/PostScreen";
 const App = () => {
   return (
     <Router>
@@ -57,6 +58,7 @@ const App = () => {
           {/*pagination for search result */}
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
+          <Route path="/posts" component={PostScreen} exact />
         </Container>
       </main>
       <Footer color />
