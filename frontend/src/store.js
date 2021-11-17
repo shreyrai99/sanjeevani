@@ -33,7 +33,8 @@ import {
   postLikeReducer,
   postUnLikeReducer,
   postDetailsReducer,
-  postDeleteReducer
+  postDeleteReducer,
+  postCreateReducer
 } from "./reducers/postReducers";
 
 const reducer = combineReducers({
@@ -62,7 +63,8 @@ const reducer = combineReducers({
   postLike: postLikeReducer,
   postUnlike: postUnLikeReducer,
   postDetails: postDetailsReducer,
-  postDelete: postDeleteReducer
+  postDelete: postDeleteReducer,
+  postCreate: postCreateReducer
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

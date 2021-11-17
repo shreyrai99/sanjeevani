@@ -66,10 +66,7 @@ const deletePost = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Post not found!");
   }
-  if (req.user.isAdmin) {
-    await post.remove();
-    res.json({ message: "Post deleted successfiully" });
-  }
+
   if (post.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("Not authorized to delete post");

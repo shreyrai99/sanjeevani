@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { listPosts } from "../actions/postActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Meta from "../components/Meta";
+import CreatePost from "./CreatePost";
 
 const PostScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -43,13 +44,18 @@ const PostScreen = ({ match, history }) => {
       {error && <Message variant="danger">{error}</Message>}
 
       {posts && (
-        <Row>
-          {posts.map(post => (
-            <Col key={post._id} sm={12} md={12} lg={12} xl={12}>
-              <Post post={post} />
-            </Col>
-          ))}
-        </Row>
+        <Container>
+          <Row>
+            <CreatePost />
+          </Row>
+          <Row>
+            {posts.map(post => (
+              <Col key={post._id} sm={12} md={12} lg={12} xl={12}>
+                <Post post={post} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
       )}
     </>
   );
