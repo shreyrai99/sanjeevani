@@ -19,11 +19,14 @@ import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import PostScreen from "./screens/PostScreen";
+import PostDetail from "./screens/PostDetail";
+import ScrollToTop from "./components/ScrollToTop";
 const App = () => {
   return (
     <Router>
       <Header />
       <main className="py-3">
+        <ScrollToTop />
         <Container>
           <Route path="/login" component={LoginScreen} />
           <Route path="/order/:id" component={OrderScreen} />
@@ -59,6 +62,7 @@ const App = () => {
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/posts" component={PostScreen} exact />
+          <Route path="/post/:id" component={PostDetail} />
         </Container>
       </main>
       <Footer color />

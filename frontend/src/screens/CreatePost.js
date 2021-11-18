@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { createPost, listPosts } from "../actions/postActions";
+import { createPost } from "../actions/postActions";
 import FormContainer from "../components/FormContainer";
 
 const CreatePost = ({ location, history }) => {
@@ -28,8 +27,10 @@ const CreatePost = ({ location, history }) => {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <Container>
-      <h1>What's on your mind?</h1>
+    <FormContainer>
+      <Alert variant="info" className="text-center">
+        <h1>What's on your mind?</h1>
+      </Alert>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -49,6 +50,8 @@ const CreatePost = ({ location, history }) => {
         <Form.Group controlId="text">
           <Form.Label>Text</Form.Label>
           <Form.Control
+            as="textarea"
+            rows={3}
             type="text"
             placeholder="Body of your post"
             value={text}
@@ -68,22 +71,11 @@ const CreatePost = ({ location, history }) => {
           />
         </Form.Group>
 
-        {/* Link */}
-        <Form.Group controlId="link">
-          <Form.Label>Link URL (Optional)</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Links URL..."
-            value={link}
-            onChange={e => setLink(e.target.value)}
-          />
-        </Form.Group>
-
         <Button type="submit" variant="primary">
           Create new post
         </Button>
       </Form>
-    </Container>
+    </FormContainer>
   );
 };
 

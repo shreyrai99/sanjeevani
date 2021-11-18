@@ -1,9 +1,9 @@
-import { Card, Button, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { addLike, removeLike, deletePost } from "../actions/postActions";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+
 const Post = props => {
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
@@ -16,20 +16,20 @@ const Post = props => {
   return (
     <>
       <Card className="my-3 p-3 rounded">
-        <Card.Header as="h3">{props.post.name}</Card.Header>
+        <Card.Header as="h3">{props.post.title}</Card.Header>
         {props.post.image && (
           <Link to={`/post/${props.post._id}`}>
             <Card.Img
               src={props.post.image}
               variant="top"
-              style={{ maxHeight: "300px" }}
+              style={{ maxHeight: "200px" }}
               onError={event => (event.target.src = "/images/sample.jpg")}
             />
           </Link>
         )}
 
         <Card.Body>
-          <Card.Title>{props.post.title}</Card.Title>
+          <Card.Title>{props.post.name}</Card.Title>
           <Card.Text>{props.post.text}</Card.Text>
           {userInfo && (
             <>

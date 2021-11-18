@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, ListGroup } from "react-bootstrap";
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { listPosts } from "../actions/postActions";
@@ -38,16 +38,21 @@ const PostScreen = ({ match, history }) => {
 
   return (
     <>
-      <h1>Community Posts</h1>
       <Meta title="Community Posts" />
+
+      <Row className="text-center">
+        <h1>Community Posts</h1>
+      </Row>
       {loading && <Loader />}
       {error && <Message variant="danger">{error}</Message>}
 
-      {posts && (
-        <Container>
-          <Row>
-            <CreatePost />
-          </Row>
+      {!loading && posts && (
+        <>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <CreatePost />
+            </ListGroup.Item>
+          </ListGroup>
           <Row>
             {posts.map(post => (
               <Col key={post._id} sm={12} md={12} lg={12} xl={12}>
@@ -55,7 +60,7 @@ const PostScreen = ({ match, history }) => {
               </Col>
             ))}
           </Row>
-        </Container>
+        </>
       )}
     </>
   );

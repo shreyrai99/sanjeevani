@@ -19,7 +19,15 @@ import {
   POST_CREATE_REQUEST,
   POST_CREATE_SUCCESS,
   POST_CREATE_FAIL,
-  POST_CREATE_RESET
+  POST_CREATE_RESET,
+  POST_COMMENT_CREATE_REQUEST,
+  POST_COMMENT_CREATE_SUCCESS,
+  POST_COMMENT_CREATE_FAIL,
+  POST_COMMENT_CREATE_RESET,
+  POST_COMMENT_DELETE_REQUEST,
+  POST_COMMENT_DELETE_SUCCESS,
+  POST_COMMENT_DELETE_FAIL,
+  POST_COMMENT_DELETE_RESET
 } from "../constants/postConstants";
 
 export const listPosts = () => async (dispatch, getState) => {
@@ -202,6 +210,78 @@ export const createPost = post => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: POST_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const commentCreatePost = (comment, postId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({ type: POST_COMMENT_CREATE_REQUEST });
+
+    //getState() can access global states
+    const {
+      userLogin: { userInfo }
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+
+    const { data } = await axios.post(
+      `/api/posts/${postId}/comment`,
+      comment,
+      config
+    );
+
+    dispatch({ type: POST_COMMENT_CREATE_SUCCESS, payload: data });
+    dispatch(listPostDetails(postId));
+  } catch (error) {
+    dispatch({
+      type: POST_COMMENT_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const deleteCommentPost = (postId, commentId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({ type: POST_COMMENT_DELETE_REQUEST });
+
+    //getState() can access global states
+    const {
+      userLogin: { userInfo }
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+
+    await axios.delete(`/api/posts/${postId}/comment/${commentId}`, config);
+
+    dispatch({ type: POST_COMMENT_DELETE_SUCCESS });
+    dispatch(listPostDetails(postId));
+    // if fails then failure is dispatched in catch block
+  } catch (error) {
+    dispatch({
+      type: POST_COMMENT_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
