@@ -21,6 +21,9 @@ const Header = () => {
               <i className="fas fa-heartbeat"></i> Sanjeevani
             </Navbar.Brand>
           </LinkContainer>
+          <Navbar.Brand>
+            <Route render={({ history }) => <SearchBox history={history} />} />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
@@ -76,13 +79,13 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      {/*<Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand>
             <Route render={({ history }) => <SearchBox history={history} />} />
           </Navbar.Brand>
         </Container>
-      </Navbar>
+              </Navbar>*/}
     </header>
   );
 };
